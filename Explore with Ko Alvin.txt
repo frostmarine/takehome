@@ -26,3 +26,6 @@ RTGS duitnya langsung, kalo SWIFT butuh beberapa hari
 IDS hanya untuk transaksi dalam negeri
 yang di recon hanya SWIFT dan RTGS
 TDP: untuk mengganti uang palsu
+
+Question: 
+kenapa harus ditambahin field BIC Code Settlement ini kalau mau tambahin RPA, padahal sebelum ada RPA report dapat berjalan seperti pada biasanya?
