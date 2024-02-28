@@ -1,0 +1,28 @@
+StockDenomReport: Daftar Inquiry Stock
+StockReport: Daftar Inquiry Stock
+TxnAtmReport: Inquiry Transaksi Atm
+TxnAutoCoverAtmReport: Inquiry Transaksi Atm
+TxnDealSlipReport: Inquiry Transaksi Cabang
+TxnEbranchReport: Inquiry Transaksi E Branch
+TxnKpDealSlipReport: Inquiry Transaksi KP
+
+Status 20 --> belom tahap terakhir / belom selesai
+Status 40 --> udah done / selesai
+
+StockDenom dan Stock Report diliat dari saldo akhir, karena saldo akhir itu jadi last update.
+TxnSlipKp, balancing swift (report jam 2 siang, data yang keinput data jam 9 pagi - 2 siang, datanya roll terus)
+AtmReport (lagi Freeze)
+
+DealSlipReport ada 2 tipe nota:
+Nota C --> nota transaksi yang ada di cabang
+Nota K --> nota cabang bon ke kantor pusat (bon yang dimaksud kaya ngambil stok)
+BNOS ngambil dari 2 database, denom dan valas
+
+RTGS compare ke MPS
+RAKNOS dan RAKNOS + SWIFT (supply datanya langsung dari SWIFT)
+Raknos = transaksi jual
+Raknos SWIFT = transaksi beli
+RTGS duitnya langsung, kalo SWIFT butuh beberapa hari
+IDS hanya untuk transaksi dalam negeri
+yang di recon hanya SWIFT dan RTGS
+TDP: untuk mengganti uang palsu
