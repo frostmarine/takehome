@@ -1,3 +1,4 @@
+Catatan:
 StockDenomReport: Daftar Inquiry Stock
 StockReport: Daftar Inquiry Stock
 TxnAtmReport: Inquiry Transaksi Atm
@@ -9,14 +10,18 @@ TxnKpDealSlipReport: Inquiry Transaksi KP
 Status 20 --> belom tahap terakhir / belom selesai
 Status 40 --> udah done / selesai
 
-StockDenom dan Stock Report diliat dari saldo akhir, karena saldo akhir itu jadi last update.
+StockDenom dan Stock Report diliat dari saldo akhir, karena saldo akhir itu jadi last update dan saldo awal itu biasanya saldo pas pagi hari
 TxnSlipKp, balancing swift (report jam 2 siang, data yang keinput data jam 9 pagi - 2 siang, datanya roll terus)
-AtmReport (lagi Freeze)
+AtmReport (lagi Freeze).
 
-DealSlipReport ada 2 tipe nota:
+Untuk E Branch & Atm datanya akan masuk semua (akan turun ke report)`
+
+DealSlipReport ada 2 tipe nota: 
 Nota C --> nota transaksi yang ada di cabang
-Nota K --> nota cabang bon ke kantor pusat (bon yang dimaksud kaya ngambil stok)
+Nota K --> nota cabang beli ke kantor pusat (bon yang dimaksud kaya ngambil stok)
 BNOS ngambil dari 2 database, denom dan valas
+
+Report Stock datanya kalau jam 7 - 9 pagi datanya pakai dari data kemarin (BNOS baru buka jam 9)
 
 RTGS compare ke MPS
 RAKNOS dan RAKNOS + SWIFT (supply datanya langsung dari SWIFT)
@@ -27,5 +32,56 @@ IDS hanya untuk transaksi dalam negeri
 yang di recon hanya SWIFT dan RTGS
 TDP: untuk mengganti uang palsu
 
-Question: 
-kenapa harus ditambahin field BIC Code Settlement ini kalau mau tambahin RPA, padahal sebelum ada RPA report dapat berjalan seperti pada biasanya?
+BNOS databasenya ada 2 yaitu dari denom dan valas, kalau di denom kaya lebih di jabarkan / detailin tiap denomnya, valas itu lebih global
+
+
+Personal: 
+Kenapa harus tambahin 1 field baru BIC Code Settlement, yang dimana sebelum ada RPA dapat berjalan seperti biasa?
+BIC Code ditambahkan dengan tujuan agar robot dari RPA bisa baca BIC Code supaya bisa dicocokkan dengan data yang ada dalam aplikasi SWIFT untuk di matching dan dicari nominalnya
+
+Coba kamu cari hubungannya kenapa kita ambil field BIC Code, terus value BIC codenya ambil dr mana dengan kenapa kok RPA butuh value BIC code itu
+Gabungin keterangan dari aku, mapping yg kamu dapet dr IT dan berdasarkan explore user
+
+Esensi nurunin report E Branch & atm adalah untuk ngecek stock
+
+Untuk kegunaannya paling yang stock, stockdenom, dealslip, kpdealslip report
+
+Autocover berlaku di semua jenis transaksi di cabang, ebranch, marketplace
+Stock2 BNOS ini punya KP, ada transaksi dari cabang ke KP. flownya cabang beli dulu ke kp baru dijual ke nasabah (setiap transaksi sudah pasti ada autocover)
+
+Setiap transaksi di inquiry transaksi atm ini akan masuk nantinya ke autocover atm di inquiry transaksi cabang
+Transaksi biasa setiap autocover dari sebuah transaksi akan muncul di Inquiry Transaksi Cabang
+
+Flow (RPA):
+1. Retrieve email yang berisi laporan2
+2. Buka file laporan excel
+3. Filter ke salah satu settlement contoh RTGS
+4. Lalu ambil nomor nota dan send ke RPA
+
+RPA akan ngambil turunan SUBLEDGER dari IT, jadi nanti RPA akan compare data BNOS dari IT dan data turunan dari MPS
+
+Catatan: Untuk saat ini balancing hanya 2 RTGS dan SWIFT
+Tujuannya adalah untuk ngebalance incoming and outgoing transaction
+Flow (sehari - hari): untuk contoh tipe settlementnya adalah RTGS
+1. Retrieve data dari BNOS (No. Nota, dll) lalu memasukannya ke dalam field di excel
+2. Filter settlement yang ingin dicocokkan / balance
+3. Mencocokkan data dari BNOS ke dalam Incoming dan Outgoing di dalam excel file
+4. Jika cocok maka copy and paste ke dalam RTSX REKON {Settlement} (Incoming --> Jual, Outgoing --> Beli) (Fieldnya REFF NO, REL TRN GEN 2, dan nominal [DEBET])
+notes: make sure nominalnya sudah sama semua
+5. Memastikan data - data yang sudah diinput tadi ada di MPS (manual)
+6. Memasukkan REL TRN / REFF NO ke RTSX REKON yang didapat dari display MPS
+notes: ada 2 sub menu RTSX dan SUBLEDGER, RTSX--> dari display MPS, SUBLEDGER --> dari BNOS (sisi kita / user)
+7. Compare data dan make sure tidak ada selisih di menu RTSX dan SUBLEDGER
+
+Flow (RAKNOS & RAKNOS + SWIFT)
+Kalo RAKNOS & RAKNOS + SWIFT, jika B --> RAKNOS + SWIFT, J --> RAKNOS
+1. Retrieve data dari PQ (masukkan nominal valas)
+notes: yang diambil dari reportnya yaitu Nomor nota, kode nasabah, total on valas
+2. RAKNOS & RAKNOS + SWIFT supply datanya diambil langsung dari SWIFT
+
+Assignment:
+Bagus, sambil menunggu Mike, boleh ga coba dibikin di word atau apa gt terkait BIC Code ini? point2nya mgkin yg harus ada d word itu ini kali ya:
+Nama Project:
+Latar Belakang Project:
+Existing Condition:
+Changes Condition:
