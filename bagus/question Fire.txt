@@ -26,3 +26,4 @@ Pertanyaan ke IT:
 12. Path NASnya apa?
 13. Kalo misalnya di report monitoring, mau ditambahin 2 field baru End to End ID sama Bank Penerima itu diambil dari database mana (tabel dan kolom DB)?
 14. Apa juga status Error Code U173 (Minta jelasin semua status error code biar jelas semuanya)?
+15. Email RPS di flow kan biro_rps, apa sekarang masih sama atau sudah ganti?
