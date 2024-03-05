@@ -1,0 +1,48 @@
+# Pengertian Fire in General
+Fire (Financial Institution Remittance) -> Sistem BCA yang dipakai oleh mitra FI (Financial Institution) untuk sarana
+pengiriman uang ke rekening maupun pengambilan uang secara tunai melalui jaringan BCA yang cepat dan aman.
+BI-Fast (Bank Indonesia - Fast): infrastruktur yang diciptakan oleh BI sebagai sistem pembayaran ritel nasional, 
+teknologi BI-FAST dapat digunakan untuk pembayaran ritel secara realtime, aman, dan efisien
+
+Alur transaksi:
+Pengirim --> FI --> Instruction --> Fire --> Rek. Bank & Uang Tunai
+
+Layanan Fire: 
+TT (Telegraphic Transfer) 
+1. TT to BCA Account: Transaksi pengiriman uang ke pemilik rekening BCA
+2. TT to Other Bank: Transaksi pengiriman uang yang ditujukan ke pemilik Bank Lain yang ada di Indonesia / Luar Negeri
+3. TT Cash Transfer: Transaksi kiriman uang tunai kepada nasabah yang tidak memiliki rekening (account) [menggunakan pin]
+4. TT Enchashment: Transaksi pencairan kiriman uang yang diterima dari TT Cash Transfer
+
+# Generate Report Monitoring Transaksi BI-FAST Fire:
+Garis besar:
+1. Data rekon dari BI-FAST nanti akan di upload oleh RVS setiap jam 09.30 - 15.00 ke KPFS
+2. Report rekon yang ada di KPFS nanti akan dikirim ke NAS
+3. Data Report Transaksi BI-FAST dari NAS akan dibaca dan data transaksi tersebut dipindah ke tabel BIFAST_RECON
+4. Sistem akan join data transaksi pada tabel TT_BIFAST dan tabel BIFAST_RECON
+5. Sistem akan join data transaksi pada tabel TT_BIFAST dan tabel TT_TXN untuk mendapatkan form number dari TT_TXN
+6. Sistem akan melakukan mapping report monitoring transaksi BI-FAST, dengan contoh dan template yang sudah ada
+7. Sistem akan mengirimkan report monitoring BI-FAST Fire ke RVS via email
+
+Diskusi Project Fire:
+KPFS (Kantor Pusat File Sharing) -> Jalur user upload ke NAS
+TT_BIFAST -> Database yang menampung setiap transaksi yang ada di fire
+RVS -> RPS
+Connect ke Database -> garis putus - putus
+Join -> Proses menggabungkan 2 tabel dengan 1 unique key yang sama di tabel tersebut
+
+1. End to End Id: 
+Setiap ada permintaan investigasi (cancellation amendment), RPS akan followup ke bank penerima
+
+Perubahan titiknya di: Mapping report monitoring dan Join Data (harus make sure dulu ke IT)
+bisa buat kotak baru tergantung table yang menampung End to End ID
+
+End to End ID dan Bank Penerima udah ada di Database dan harus ditambahin ke report monitoring
+
+2. Error Code BI-FAST:
+Existing: Error code 62: "Rekening dalam mata uang valas tidak dapat menerima IDR"
+Menambahkan mappingan error code 62 jadi "Transaksi tidak dapat dijalankan oleh bank penerima" / "transaction can not be processed at beneficiary bank"
+Perubahan di APX dan di flow Mapping Report Monitoring
+
+3. Fixing Bug Report Monitoring:
+intinya: ingin mengubah logic jobnya (harus tanya ke IT)
