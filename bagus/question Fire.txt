@@ -1,4 +1,4 @@
-Questions:
+Questions General:
 1. Kepanjangan dari IAC apa dan tugasnya untuk apa?
 2. Kepanjangan dari RVS apa dan tugasnya untuk apa?
 3. Kepanjangan dari KPFS apa dan tugasnya untuk apa? (Kantor Pusat File Sharing)
@@ -24,3 +24,5 @@ Pertanyaan ke IT:
 10. Report yang di flow sama monitoring kan beda? yang bener yang mana?
 11. Folder KPFSnya apa?
 12. Path NASnya apa?
+13. Kalo misalnya di report monitoring, mau ditambahin 2 field baru End to End ID sama Bank Penerima itu diambil dari database mana (tabel dan kolom DB)?
+14. Apa juga status Error Code U173 (Minta jelasin semua status error code biar jelas semuanya)?
