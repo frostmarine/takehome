@@ -22,3 +22,5 @@ Pertanyaan ke IT:
 8. Maksud dari Error Code 62 itu apa sih? sama transaksinya apa aja yang masuk ke 62?
 9. Kenapa request ganti error code 62 jadi "Transaksi tidak dapat dijalankan oleh bank penerima" / "transaction can not be processed at beneficiary bank"?
 10. Report yang di flow sama monitoring kan beda? yang bener yang mana?
+11. Folder KPFSnya apa?
+12. Path NASnya apa?
