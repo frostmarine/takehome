@@ -46,3 +46,7 @@ Perubahan di APX dan di flow Mapping Report Monitoring
 
 3. Fixing Bug Report Monitoring:
 intinya: ingin mengubah logic jobnya (harus tanya ke IT)
+
+compare jumlah file dengan hari dari transaksi (jumat, sabtu, minggu), libur bisa lebih
+
+misalkan ada 2 database
