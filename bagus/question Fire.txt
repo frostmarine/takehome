@@ -12,18 +12,19 @@ Questions General:
 
 
 Pertanyaan ke IT: 
-1. End to End ID dapatnya darimana? (tanya ke IT)
-2. Saat ini ngecek Bank Penerimanya itu darimana? (tanya ke IT)
-3. Kenapa status failed sama failed di mapping jadi MISMATCH?
-4. Kenapa status succesful sama failed jadi MATCH?
-5. Nanti tanya join datanya itu pake apaa?
+1. End to End ID dapatnya darimana? (tanya ke IT) tabel -> TT_BIFAST, kolom -> TT_BIFAST.ENDID
+2. Saat ini ngecek Bank Penerimanya (Beneficiary Bank Name) itu darimana? BIFAST_MEMBERMS, BIFAST_MEMBERMS.BANK_NAME
+3. Kenapa status failed sama failed di mapping jadi MISMATCH? Karena transaksi failed atau gagal jadi MISMATCH
+4. Kenapa status succesful sama failed jadi MATCH? Acuan status dari BI, karena status fire bisa timeout sehingga ikut dari status BI 
+5. Nanti tanya join datanya itu pake apaa? TT_BIFAST.BENEFICIARY_BANK isinya clearing Code di join dengan BIFAST_MEMBERMS di BIFAST_MEMBERMS.CLEARING_CODE (beneficiary bank)
 6. Buat appendix Transaction Date, No. Rekening Debet dari tabel dan kolom DB nanti penambahan field baru nya Bank Penerima sama End to End!
-7. Lengkapin Error Code yang di APX? apakah error code di APX refer ke status error code pada report monitoring?
-8. Maksud dari Error Code 62 itu apa sih? sama transaksinya apa aja yang masuk ke 62?
-9. Kenapa request ganti error code 62 jadi "Transaksi tidak dapat dijalankan oleh bank penerima" / "transaction can not be processed at beneficiary bank"?
-10. Report yang di flow sama monitoring kan beda? yang bener yang mana?
-11. Folder KPFSnya apa?
-12. Path NASnya apa?
-13. Kalo misalnya di report monitoring, mau ditambahin 2 field baru End to End ID sama Bank Penerima itu diambil dari database mana (tabel dan kolom DB)?
-14. Apa juga status Error Code U173 (Minta jelasin semua status error code biar jelas semuanya)?
-15. Email RPS di flow kan biro_rps, apa sekarang masih sama atau sudah ganti?
+7. Lengkapin Error Code yang di APX? apakah error code di APX refer ke status error code pada report monitoring? Error code masih up to date
+8. Folder KPFSnya apa? masih harus ditanyakan
+9. Path NASnya apa? /cd/fire/Bifast/in
+10. Apa juga status Error Code U173 (Minta jelasin semua status error code biar jelas semuanya)? Selain yang di appendix, statusnya berarti Terdapat kesalahan pada sistem / error
+11. Email RPS di flow kan biro_rps, apa sekarang masih sama atau sudah ganti? harusnya masih sama
+
+Tanya ke User:
+1. Maksud dari Error Code 62 itu apa sih? sama transaksinya apa aja yang masuk ke 62?
+2. Kenapa request ganti error code 62 jadi "Transaksi tidak dapat dijalankan oleh bank penerima" / "transaction can not be processed at beneficiary bank"?
+3. Report yang di flow sama monitoring kan beda? yang bener yang mana?
