@@ -1,0 +1,83 @@
+# Fire (Financial Institution Remittance)
+
+Credited to Beneficiary Account: 
+Sisi cabang gaada, kalo di sisi investigasi ada (harus dimunculin)
+
+Credited to Other Bank: In Progress, Nostro Debited - Pending Release to Other Bank, Need Confirmation 
+(Cancelled by NOP ccy, Unidentified gapernah) dimunculin aja sesuai menu yang ada 
+
+Status Lengkap muncul di Manual Kerja, RPS. PAKAR munculnya status2 yang sering aja
+
+Status Transaksi Fire:
+Status Fire Cabang	Status Fire KP
+Ready to Encash		All
+Already Encash		Cancelled --> ada di PAKAR
+					Cancelled by NOP Ccy --> kasusnya belum pernah
+					Cancelled by NOP Limit --> kasusnya belum pernah
+					Rejected --> by System
+					Insufficient Fund --> (reject by System / pending by System) dana mitra ga cukup untuk transaksi
+					Unidentified --> belum pernah
+					Need Authorize --> perlu approval release dari sistem mitra
+					Need Confirmation --> butuh investigation lebih lanjut (sesuatu yang lebih complex) [butuh konfirmasi ke IT]
+					Need Correction --> transaksi ada yang mau di benerin (ubah jumlah transaksi) (belum pernah muncul di invest)
+					Need Escalation --> belum pernah muncul
+					Need Verification --> belum pernah muncul
+					Pending By System --> transaksi mitra masuk setelah cutoff (batch selanjutnya)
+					Pending Release to Other Bank (DT) --> transaksi valas ke bank domestik pending akibat jam kliring / nunggu batch
+					Pending Release to Other Bank (OR) --> transaksi valas ke bank luar negeri pending akibat jam kliring / nunggu batch
+					Released --> transaksinya udah berhasil diproses dari sistem mitra
+					Nostro Debited - Pending Release to Other Bank --> udah debit rekening mitra, tapi masih menunggu jalan transaksinya
+					On Hold due to Screening --> di screening oleh WLF (masih on hold)
+					Rejected by WLF --> ditolak oleh WLF
+					In Progress --> ada error di sisi FIRE; IT akan konfirmasi apakah transaksi dilanjutkan atau tidak (lagi diproses sistem)
+					Transaction Pending BI-FAST
+					Transaction Reject BI-FAST
+					
+Pencairan dana FIRE: XPressMoney, MoneyGram, dan FireCash (TT Encashment all mitra fire)
+
+Pencairan Beda Nama:
+MoneyGram beda nama dikit akan ditolak, harus sama persis. Jika terdapat perbedaan nama, perlu dilakukan pengubahan nama atau transaksi tidak dapat dilakukan
+
+web FI --> web Albilad
+
+Setiap batch report keluar (PL-4000, 4001, 4005; max 600) jika semua report tidak keangkut maka lanjut ke batch selanjutnya
+
+PL-4000 (transaksi yang berhasil di upload dan diproses) [tidak akan ke 4001 lagi karena diupload bareng]:
+EXISTING: matching dan lanjut ke PL-4005
+
+PL-4001 (transaksi yang gagal di upload dan diproses)
+
+FI-3002: 
+
+MT199: tidak boleh ada special character, jadi ke reject
+
+Proses:
+1. Upload ke aplikasi Fire (3 Report PL-4000, 4001 [masih manual], 4005)
+2. Di Fire akan ada report FI lagi, (Total Data: & Total Reject: )
+3. FI-3002 akan ada report lagi, nanti akan ada transaction report
+
+Flow (masih bingung)
+Fire yang di OR kan (sumbernya dari Fire) debet akan pakai Rendy, advicenya dari MT199 atau email
+Proses simpan tidak ada
+
+Delete OR setelah registrasi di CLARIS
+
+Sumber Tolakan OR:
+1. IR
+2. Bank Koresponden
+
+Sumber OR:
+1. Nasabah cabang / channel
+2. Fire
+3. IR
+
+IR Linc diganti RENDY
+IR dibagi 2 jadi Fire & IR Linc
+
+Penanganan Keluhan Cash Encashment
+Cabang:
+Mulai -> Terima keluhan transaksi Cash Transfer (bacain error) -> Inquiry status transaksi pada Aplikasi Fire (cabang  tidak menemukan txn di Fire sehingga tidak bisa pencairan)
+->
+
+FI:
+Cash Encashment refer ke pencairan tunai
