@@ -1,0 +1,29 @@
+Perubahan Pakar FIRE
+
+Status Fire Cabang: 
+1. Ready to Encash
+2. Already Encash
+
+Status Fire KP: 
+1. Cancelled --> Dibatalkan oleh mitra (Ada di PAKAR)
+2. Cancelled by NOP CCY --> Belum pernah
+3. Cancelled by NOP Limit --> Belum pernah
+4. Rejected --> Ditolak oleh sistem
+5. Insufficient Fund --> Dana mitra tidak cukup untuk menjalankan transaksi
+6. Unidentified --> Belum pernah 
+7. Need Authorize --> Perlu persetujuan dari releaser mitra
+8. Need Confirmation --> Investigasi / konfirmasi ke IT
+9. Need Correction --> Diperlukan untuk edit transaksi (belum pernah)
+10. Need Escalation --> Belum pernah
+11. Need Verification --> Belum pernah 
+12. Pending by System --> Transaksi mitra akan diproses setelah cut off fire; dapat terjadi karena kena jam kliring
+13. Pending Release to Other Bank (DT) --> Transaksi valas ke domestik pending; dapat terjadi karena kena jam kliring
+14. Pending Release to Other Bank (OR) --> Transaksi valas ke luar negeri pending
+15. Released --> Transaksi berhasil diproses oleh mitra
+16. Nostro Debited - Pending Release to Other Bank --> Sudah debit rekening mitra, menunggu batch untuk menjalankan transaksinya
+17. On Hold due to Screening --> Hold karena screening WLF
+18. Rejected by WLF --> Ditolak oleh WLF
+19. In Progress --> Transaksi belum berhasil diproses oleh sistem, IT nanti akan konfirmasi lagi apakah transaksi ingin diproses / cancel
+
+
+Transaksi pencairan dana Fire yaitu: XpressMoney, MoneyGram, FireCash (TT Cash Encashment), RIA (RIA belum include)
